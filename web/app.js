@@ -1,10 +1,10 @@
 
 
-let api="http://120.0.0.1:4040/signup";
+let api="http://40.0.16.155:4040/signup";
 
 async function sendData(){
     let x=document.getElementById("n").value;
-    let y=document.getElementById("g").value;
+    let y=document.getElementById("e").value;
     let z=document.getElementById("p").value;
     let db={
     name:x,
