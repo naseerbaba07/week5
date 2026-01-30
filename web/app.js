@@ -1,0 +1,30 @@
+
+
+let api="http://120.0.0.1:4040/signup";
+
+async function sendData(){
+    let x=document.getElementById("n").value;
+    let y=document.getElementById("g").value;
+    let z=document.getElementById("p").value;
+    let db={
+    name:x,
+    email:y,
+    password:z
+}
+console.log("\n"+JSON.stringify(db)+"\n\n");
+console.log(JSON.stringify(db,null,2));
+    try{
+        let res=await fetch(api,{
+            method:"POST",
+            headers : {"Content-Type":"application/json"},
+            body:JSON.stringify(db)
+        
+        });
+        let data = await res.text();
+        console.log("\napi response :"+data);
+    }
+    catch(e){
+       console.log("Error : "+e);
+    }
+}
+//sendData();
