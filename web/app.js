@@ -1,30 +1,31 @@
+let api = "http://40.0.16.155:4040/signup";
 
+async function sendData() {
+  let x = document.getElementById("n").value;
+  let y = document.getElementById("e").value;
+  let z = document.getElementById("p").value;
+  let db = {
+    name: x,
+    email: y,
+    password: z,
+  };
+  console.log("\n" + JSON.stringify(db) + "\n\n");
+  console.log(JSON.stringify(db, null, 2));
+  try {
+    let res = await fetch(api, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(db),
+    });
+    let data = await res.text();
 
-let api="http://40.0.16.155:4040/signup";
-
-async function sendData(){
-    let x=document.getElementById("n").value;
-    let y=document.getElementById("e").value;
-    let z=document.getElementById("p").value;
-    let db={
-    name:x,
-    email:y,
-    password:z
-}
-console.log("\n"+JSON.stringify(db)+"\n\n");
-console.log(JSON.stringify(db,null,2));
-    try{
-        let res=await fetch(api,{
-            method:"POST",
-            headers : {"Content-Type":"application/json"},
-            body:JSON.stringify(db)
-        
-        });
-        let data = await res.text();
-        console.log("\napi response :"+data);
+    if (res.ok) {
+      localStorage.setItem("email", y);
+      localStorage.setItem("password", z);
     }
-    catch(e){
-       console.log("Error : "+e);
-    }
+    console.log("\napi response :" + data);
+  } catch (e) {
+    console.log("Error : " + e);
+  }
 }
 //sendData();
